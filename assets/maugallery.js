@@ -1,38 +1,44 @@
 !(function (a) {
-  (a.fn.mauGallery = function (t) {
+  a.fn.mauGallery = function (t) {
     var t = a.extend(a.fn.mauGallery.defaults, t),
       e = [];
-    return this.each(function () {
-      a.fn.mauGallery.methods.createRowWrapper(a(this)),
-        t.lightBox &&
-          a.fn.mauGallery.methods.createLightBox(
-            a(this),
-            t.lightboxId,
-            t.navigation
-          ),
-        a.fn.mauGallery.listeners(t),
-        a(this)
-          .children(".gallery-item")
-          .each(function (l) {
-            a.fn.mauGallery.methods.responsiveImageItem(a(this)),
-              a.fn.mauGallery.methods.moveItemInRowWrapper(a(this)),
-              a.fn.mauGallery.methods.wrapItemInColumn(a(this), t.columns);
-            var i = a(this).data("gallery-tag");
-            t.showTags && void 0 !== i && -1 === e.indexOf(i) && e.push(i);
-          }),
-        t.showTags &&
-          a.fn.mauGallery.methods.showItemTags(a(this), t.tagsPosition, e),
-        a(this).fadeIn(500);
+    var $this = a(this);
+    return $this.each(function () {
+      var $this = a(this);
+      a.fn.mauGallery.methods.createRowWrapper($this);
+      if (t.lightBox) {
+        a.fn.mauGallery.methods.createLightBox(
+          $this,
+          t.lightboxId,
+          t.navigation
+        );
+      }
+      a.fn.mauGallery.listeners(t);
+      var $children = $this.children(".gallery-item");
+      for (var l = 0; l < $children.length; l++) {
+        var $child = a($children[l]);
+        a.fn.mauGallery.methods.responsiveImageItem($child);
+        a.fn.mauGallery.methods.moveItemInRowWrapper($child);
+        a.fn.mauGallery.methods.wrapItemInColumn($child, t.columns);
+        var i = $child.data("gallery-tag");
+        if (t.showTags && void 0 !== i && -1 === e.indexOf(i)) {
+          e.push(i);
+        }
+      }
+      if (t.showTags) {
+        a.fn.mauGallery.methods.showItemTags($this, t.tagsPosition, e);
+      }
+      $this.fadeIn(500);
     });
+  };
+  (a.fn.mauGallery.defaults = {
+    columns: 3,
+    lightBox: !0,
+    lightboxId: null,
+    showTags: !0,
+    tagsPosition: "bottom",
+    navigation: !0,
   }),
-    (a.fn.mauGallery.defaults = {
-      columns: 3,
-      lightBox: !0,
-      lightboxId: null,
-      showTags: !0,
-      tagsPosition: "bottom",
-      navigation: !0,
-    }),
     (a.fn.mauGallery.listeners = function (t) {
       a(".gallery-item").on("click", function () {
         t.lightBox &&
