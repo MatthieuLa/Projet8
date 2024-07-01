@@ -49,7 +49,7 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "organization",
+        "@type": "LocalBusiness",
         "name": "Nina Carducci",
         "image": "https://example.com/assets/images/nina.webp",
         "description": "Nina Carducci, photographe événementiel à Bordeaux. Découvrez mes services et mon portfolio.",
@@ -86,19 +86,31 @@
             "@type": "Service",
             "name": "Shooting photo",
             "description": "Pour capturer vos moments les plus précieux et garder un souvenir impérissable. Je me déplace en Île-de-France pour réaliser vos photos.",
-            "priceRange": "350€/demi journée"
+            "offers": {
+              "@type": "Offer",
+              "price": "350",
+              "priceCurrency": "EUR"
+            }
           },
           {
             "@type": "Service",
             "name": "Retouches",
             "description": "Vous souhaitez retoucher vos photos pour un résultat professionnel ? Bénéficier d’un rendu optimal pour vos publications.",
-            "priceRange": "50€/photo"
+            "offers": {
+              "@type": "Offer",
+              "price": "50",
+              "priceCurrency": "EUR"
+            }
           },
           {
             "@type": "Service",
             "name": "Album photos",
             "description": "Partagez avec vos proches et vos clients les photos des moments partagés ensemble à travers un album photo personnalisé.",
-            "priceRange": "400€ album A4"
+            "offers": {
+              "@type": "Offer",
+              "price": "400",
+              "priceCurrency": "EUR"
+            }
           }
         ]
       }
